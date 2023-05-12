@@ -9,6 +9,9 @@ class Move:
         self.energy = energy
         self.duration = duration
 
+    def __str__(self):
+        return f"{self.name} [{self.type.name}]"
+
     def __repr__(self):
         return f"Move(name='{self.name}', type={self.type}, power={self.power}, energy={self.energy}, duration={self.duration})"
     

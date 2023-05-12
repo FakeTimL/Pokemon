@@ -9,4 +9,5 @@ class Weather(Enum):
     WINDY = {Type.DRAGON, Type.FLYING, Type.PSYCHIC}
     SNOW = {Type.ICE, Type.STEEL}
     FOG = {Type.GHOST, Type.DARK}
+    NULL = {}
     

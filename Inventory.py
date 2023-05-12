@@ -74,7 +74,7 @@ inventory = [Pokemon("Aggron", 35, [15, 11, 12], ['Smack Down', 'Stone Edge']),
              Pokemon("Crobat", 26, [14, 15, 12], ['Air Slash', 'Shadow Ball']), 
              Pokemon("Toxicroak", 29, [7, 5, 14], ['Poison Jab', 'Mud Bomb']),
              Pokemon("Mr. Mime", 32, [13, 6, 15], ['Confusion', 'Psybeam']), 
-             Pokemon("Alolan Muk", 25, [13, 6, 15], ['Snarl', 'Return'], [Type.POISON, Type.DARK]), 
+             Pokemon("Alolan Muk", 25, [13, 6, 15], ['Snarl', 'Return']), 
              Pokemon("Staraptor", 24, [15, 15, 6], ['Quick Attack', 'Heat Wave']), 
              Pokemon("Hitmonchan", 30, [7, 10, 14], ['Bullet Punch', 'Fire Punch']),
              Pokemon("Drifblim", 29, [7, 15, 14], ['Hex', 'Ominous Wind']),
@@ -138,7 +138,9 @@ inventory = [Pokemon("Aggron", 35, [15, 11, 12], ['Smack Down', 'Stone Edge']),
              Pokemon("Blissey", 20, [15, 14, 13], ['Zen Headbutt', 'Dazzling Gleam']), 
              Pokemon("Purugly", 29, [10, 14, 14], ['Shadow Claw', 'Play Rough']), 
              Pokemon("Hitmonchan", 23, [14, 12, 14], ['Bullet Punch', 'Close Combat']), 
-             Pokemon("Dewott", 32, [14, 13, 11], ['Water Gun', 'Water Pulse'])]
+             Pokemon("Dewott", 32, [14, 13, 11], ['Water Gun', 'Water Pulse']),
+
+             Pokemon("Mega Beedrill", 21, [11, 14, 12], ['Infestation', 'Sludge Bomb'])]
 
 def parse(pokemons):
     while True:
@@ -151,4 +153,3 @@ def parse(pokemons):
         except:
             break
     print(', \n             '.join([repr(pokemon) for pokemon in pokemons]))
-    
