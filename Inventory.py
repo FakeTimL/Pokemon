@@ -1,5 +1,5 @@
 from Pokemon import Pokemon
-from Type import Type
+from Dummy import Dummy
 
 inventory = [Pokemon("Aggron", 35, [15, 11, 12], ['Smack Down', 'Stone Edge']), 
              Pokemon("Flareon", 35, [9, 15, 6], ['Ember', 'Fire Blast']), 
@@ -142,11 +142,29 @@ inventory = [Pokemon("Aggron", 35, [15, 11, 12], ['Smack Down', 'Stone Edge']),
 
              Pokemon("Mega Beedrill", 21, [11, 14, 12], ['Infestation', 'Sludge Bomb'])]
 
+sunshine = [Pokemon("Munchlax", 28, [12, 14, 14], ['Tackle', 'Body Slam']), 
+            Pokemon("Galarian Stunfisk", 25, [11, 12, 13], ['Mud Shot', 'Earthquake', 'Rock Slide']), 
+            Pokemon("Stoutland", 18.5, [14, 12, 15], ['Ice Fang', 'Wild Charge', 'Crunch']), 
+            Pokemon("Donphan", 17.5, [15, 15, 12], ['Mud Slap', 'Earthquake']), 
+            Pokemon("Lopunny", 26, [15, 12, 10], ['Low Kick', 'Fire Punch'])]
+
+little = [Pokemon("Gible", 16, [15, 14, 10], ['Mud Shot', 'Body Slam']), 
+            Pokemon("Shieldon", 20, [14, 14, 13], ['Tackle', 'Heavy Slam']), 
+            Pokemon("Cottonee", 25.5, [13, 14, 15], ['Charm', 'Seed Bomb']), 
+            Pokemon("Bidoof", 25, [12, 15, 15], ['Tackle', 'Crunch']), 
+            Pokemon("Shellder", 16.5, [13, 15, 14], ['Ice Shard', 'Water Pulse']), 
+            Pokemon("Meowth", 24.5, [10, 14, 15], ['Bite', 'Dark Pulse']), 
+            Pokemon("Ponyta", 10.5, [13, 15, 9], ['Ember', 'Flame Wheel']), 
+            Pokemon("Larvitar", 17, [14, 13, 13], ['Rock Smash', 'Crunch']), 
+            Pokemon("Mankey", 15, [13, 14, 15], ['Karate Chop', 'Low Sweep']), 
+            Pokemon("Torchic", 16.5, [11, 11, 14], ['Ember', 'Flamethrower']), 
+            Pokemon("Snover", 15, [14, 12, 14], ['Powder Snow', 'Stomp'])]
+
 def parse(pokemons):
     while True:
         print()
         try:
-            pokemon = Pokemon.Parse(input())
+            pokemon = Dummy.parse(input())
             if input(pokemon):
                 continue
             pokemons.append(pokemon)

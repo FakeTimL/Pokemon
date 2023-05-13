@@ -1,4 +1,4 @@
-from Pokemon import Pokemon as p
+from Pokemon import Pokemon, Pokemon as p
 from Dummy import Dummy as d
 from Inventory import parse, inventory as i
 from Context import Context as c

@@ -9,6 +9,14 @@ class Move:
         self.energy = energy
         self.duration = duration
 
+    # main.charge_count()
+    def charge_count(self, fast, mode=1, cycle=False):
+        return -self.energy[mode] / fast.energy[mode] if cycle \
+        else -(self.energy[mode] // fast.energy[mode])
+    
+    def charge_duration(self, fast, mode=1, cycle=False):
+        return self.charge_count(fast, mode, cycle) * fast.duration[mode]
+
     def __str__(self):
         return f"{self.name} [{self.type.name}]"
 

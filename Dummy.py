@@ -3,7 +3,8 @@ from Species import species
 
 class Dummy:
     @staticmethod
-    def parse(str):
+    def parse(str=None):
+        str = str or input()
         args = str.split()
         cp = int(args[0])
         title = lambda s: s.replace('-',' ').replace('_','-').title()

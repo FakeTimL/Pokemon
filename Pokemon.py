@@ -20,52 +20,9 @@ class Pokemon:
         return f'{self.name} (CP {self.cp})'
 
     def __str__(self):
-        moves = "\n".join([f'[{m.type.name}] {m.name}: ({m.power})' for m in self.moves])
+        moves = "\n".join([f'[{m.type.name}] {m.name}: {m.power}' for m in self.moves])
         return f'Lv.{self.level} {self.name} (CP {self.cp}) {"/".join([t.name for t in self.species.types])}\n{moves}'
         
     def __repr__(self):
         return f'Pokemon("{self.name}", {self.level}, [{self.attack - self.species.attack}, {self.defense - self.species.defense}, {self.stamina - self.species.stamina}], {[m.name for m in self.moves]})'
-
-    # def damage_mod(self, enemy, pvp=1, weather=None, friendship=1):
-    #     te = lambda m: m.type.against(*enemy.species.types)
-    #     stab = lambda m: 1.2 if m.type in self.species.types else 1
-    #     wab = lambda m: 1.2 if not pvp and m.type in weather else 1 # Weather boost does not apply in PvP
-    #     shadow = (1.2 if self.shadow else 1) * (1.2 if enemy.shadow else 1)
-    #     fsb = friendship if not pvp else 1 # Friendship does not apply in PvP
-    #     return lambda m: te(m) * stab(m) * wab(m) * shadow * fsb
-
-    # def damage_against(self, enemy, pvp=1, weather=None, friendship=1):
-    #     attack = self.attack * Pokemon.cpm[self.level]
-    #     defense = enemy.defense * Pokemon.cpm[enemy.level]
-    #     mod = self.damage_mod(enemy, pvp, weather, friendship)
-    #     return [int((16*m.power[pvp]*attack/defense*mod(m))//25)+1 for m in self.moves]
-
-    # def fast_dps_against(self, enemy, pvp=1, weather=None, friendship=1):
-    #     return self.damage_against(enemy, pvp, weather, friendship)[0] / self.moves[0].duration[pvp]
-
-    # def charge_count(self, pvp=1, cycle=False):
-    #     rate = lambda m: -m.energy[pvp] / self.moves[0].energy[pvp]
-    #     count = lambda m: -(m.energy[pvp] // self.moves[0].energy[pvp])
-    #     return [rate(m) if cycle else count(m) for m in self.moves[1:]]
-
-    # def charge_duration(self, pvp=1, cycle=False):
-    #     return [c * self.moves[0].duration[pvp] for c in self.charge_count(pvp, cycle)]
-
-    # Only count the first cycle: cycle = False
-    # def cycle_dps_against(self, enemy, pvp=1, weather=None, friendship=1):
-    #     damage = self.damage_against(enemy, pvp, weather, friendship)
-    #     return [(cnt * damage[0] + dmg) / dur for cnt, dur, dmg in zip(self.charge_count(pvp), self.charge_duration(pvp), damage[1:])]
-
-    # def print_combat(self, enemy, pvp=1, weather=None, friendship=1):
-    #     print(self.short())
-
-    #     mod = self.damage_mod(enemy, pvp, weather, friendship)
-    #     damage = self.damage_against(enemy, pvp, weather, friendship)
-    #     fast_dps = self.fast_dps_against(enemy, pvp, weather, friendship)
-    #     print(f'{self.moves[0]}: {damage[0]}/ATK ({fast_dps:.2f} DPS) {100*mod(self.moves[0]):.0f}%')
-
-    #     count = self.charge_count(pvp, cycle=True)
-    #     duration = self.charge_duration(pvp)
-    #     cycle_dps = self.cycle_dps_against(enemy, pvp, weather, friendship)
-    #     for i in range(len(self.moves)-1):
-    #         print(f'{self.moves[i+1]}: {damage[i+1]}/ATK ({cycle_dps[i]:.1f} DPS) in {duration[i]:.1f}s ({count[i]:.1f}x) {100*mod(self.moves[i+1]):.0f}%')
+    

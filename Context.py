@@ -25,22 +25,15 @@ class Context():
         fast = attacker.moves[0]
         return self.damage(attacker, defender)(fast) / fast.duration[self.mode]
     
-    def charge_count(self, attacker, cycle=False):
-        rate = lambda m: -m.energy[self.mode] / attacker.moves[0].energy[self.mode]
-        count = lambda m: -(m.energy[self.mode] // attacker.moves[0].energy[self.mode])
-        return lambda m: rate(m) if cycle else count(m)
-    
-    def charge_duration(self, attacker, cycle=False):
-        return lambda m: self.charge_count(attacker, cycle)(m) * attacker.moves[0].duration[self.mode]
-    
     # Only count the first cycle: cycle = False
     def cycle_dps(self, attacker, defender):
-        cnt = self.charge_count(attacker)
-        dur = self.charge_duration(attacker)
+        fast = attacker.moves[0]
+        cnt = lambda m: m.charge_count(fast, self.mode)
+        dur = lambda m: m.charge_duration(fast, self.mode)
         dmg = self.damage(attacker, defender)
-        return lambda m: (cnt(m) * dmg(attacker.moves[0]) + dmg(m)) / dur(m)
+        return lambda m: (cnt(m) * dmg(fast) + dmg(m)) / dur(m)
     
-    def print_combat(self, attacker, defender):
+    def combat(self, attacker, defender):
         print(attacker.short())
 
         mod = self.damage_mod(attacker, defender)
@@ -49,9 +42,8 @@ class Context():
         fast = attacker.moves[0]
         print(f'{fast}: {dmg(fast)}/ATK ({fdps:.1f} DPS) {100*mod(fast):.0f}%')
 
-        cnt = self.charge_count(attacker, cycle=True)
-        dur = self.charge_duration(attacker)
+        cnt = lambda m: m.charge_count(fast, self.mode, cycle=True)
+        dur = lambda m: m.charge_duration(fast, self.mode)
         cdps = self.cycle_dps(attacker, defender)
         for m in attacker.moves[1:]:
             print(f'{m}: {dmg(m)}/ATK ({cdps(m):.1f} DPS) in {dur(m):.1f}s ({cnt(m):.1f}x) {100*mod(m):.0f}%')
-    
